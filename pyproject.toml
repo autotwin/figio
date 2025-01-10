@@ -23,7 +23,7 @@ dependencies = [
   "scipy",
   "tzlocal",
 ]
-dynamic = ["version"]
+# dynamic = ["version"]  # look at cargo
 # license = {file = "LICENSE"}
 name = "figio"
 requires-python = '>=3.9,<3.13'
