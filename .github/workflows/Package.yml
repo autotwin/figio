@@ -16,40 +16,40 @@ jobs:
           python-version: 3.12
       - name: Requirements
         run: pip install --upgrade build pip twine
-      - name: Source
-        run: python -m build . --sdist
+      - name: Build
+        run: python -m build .
       - name: Check
         run: twine check dist/*
       - uses: actions/upload-artifact@v4
         with:
           name: dist
           path: dist
-  Wheel:
-    strategy:
-      fail-fast: false
-      matrix:
-        os: [macos-latest, ubuntu-latest, windows-latest]
-        python-version: ['3.9', '3.10', '3.11', '3.12']
-    runs-on: ${{ matrix.os }}
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
-      - name: Requirements
-        run: pip install --upgrade build pip twine
-      - name: Wheel
-        run: python -m build . --wheel
-      - name: Check
-        run: twine check dist/*
-      - uses: actions/upload-artifact@v4
-        with:
-          name: ${{ matrix.os }}-${{ matrix.python-version }}-dist
-          path: dist
+  #Wheel:
+  #  strategy:
+  #    fail-fast: false
+  #    matrix:
+  #      os: [macos-latest, ubuntu-latest, windows-latest]
+  #  runs-on: ${{ matrix.os }}
+  #  steps:
+  #    - name: Checkout
+  #      uses: actions/checkout@v4
+  #    - name: Python
+  #      uses: actions/setup-python@v5
+  #      with:
+  #        python-version: 3.12
+  #    - name: Requirements
+  #      run: pip install --upgrade build pip twine
+  #    - name: Wheel
+  #      run: python -m build . --wheel
+  #    - name: Check
+  #      run: twine check dist/*
+  #    - uses: actions/upload-artifact@v4
+  #      with:
+  #        name: ${{ matrix.os }}-dist
+  #        path: dist
   Twine:
-    needs: [Source, Wheel]
+    # needs: [Source, Wheel]
+    needs: Source
     runs-on: ubuntu-latest
     steps:
       - uses: actions/download-artifact@v4
