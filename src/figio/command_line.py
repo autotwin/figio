@@ -5,8 +5,9 @@ accepts input files of type .yml.
 import argparse
 from pathlib import Path
 
-# import xyfigure.constants as cc
+# import figio.constants as cc
 from figio.factory import XYFactory
+import figio.histogram as hh
 from figio.xymodel import XYModel, XYModelAbaqus
 from figio.xyview import XYView, XYViewAbaqus
 from figio.yml_to_dict import yml_to_dict
@@ -28,18 +29,29 @@ def command_line(fin: Path) -> bool:
     items = []  # cart of items is empty, fill from factory
     # factory = XYFactory()  # it's static!
 
-    for item in db:
-        kwargs = db[item]
-        i = XYFactory.create(item, **kwargs)
-        if i:
-            items.append(i)
-        else:
-            print(
-                "Item is None from factory, nothing added to command_line items."
-            )
+    breakpoint()
 
+    for item in db:
+
+        if "histogram" in item:
+            i = hh.histogram_new(db[item])
+            items.append(i)
+
+        else:
+            kwargs = db[item]
+            i = XYFactory.create(item, **kwargs)
+            if i:
+                items.append(i)
+            else:
+                warn_msg = "Item is None from factory,"
+                warn_msg += " nothing added to command_line items."
+                print(warn_msg)
+
+    hists = [i for i in items if isinstance(i, hh.Histogram)]
     models = [i for i in items if isinstance(i, (XYModel, XYModelAbaqus))]
     views = [i for i in items if isinstance(i, (XYView, XYViewAbaqus))]
+
+    breakpoint()
 
     for view in views:
         print(f'Creating view with guid = "{view.guid}"')

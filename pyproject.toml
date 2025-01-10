@@ -15,7 +15,7 @@ classifiers = [
 description = "figio"
 version = "0.0.3"
 readme = "README.md"
-#long_description = "A declarative program for plotting (x, y) and histogram data"
+#long_description = "A declarative method for plotting (x, y) and histogram data"
 dependencies = [
   "matplotlib",
   "numpy",

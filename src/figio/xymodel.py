@@ -1,9 +1,5 @@
-# https://www.python.org/dev/peps/pep-0008/#imports
-# standard library imports
-# import os
 import sys
 
-# related third-party imports
 import numpy as np
 from pathlib import Path
 from scipy import signal
@@ -19,7 +15,6 @@ from scipy.integrate import cumulative_trapezoid  # version 1.14.1
 from figio.xybase import XYBase
 
 
-# Helper functions
 def cross_correlation(reference, subject, verbose=False):
     """Creates a cross correlation assessment of how close the subject signal
     is to the reference signal.

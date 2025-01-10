@@ -1,5 +1,3 @@
-# https://www.python.org/dev/peps/pep-0008/#imports
-# standard library imports
 import os
 from datetime import datetime
 from pathlib import Path

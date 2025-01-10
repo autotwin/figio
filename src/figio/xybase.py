@@ -1,16 +1,9 @@
-# https://www.python.org/dev/peps/pep-0008/#imports
-# standard library imports
 import os
 from pathlib import Path
 import sys
 from abc import ABC
 
-# related third-party imports
 
-# local application/library specific imports
-
-
-# Helper functions
 def absolute_path(folder):
     """
     Makes certain the path to the folder for pending serialization exists.
@@ -34,7 +27,6 @@ def absolute_path(folder):
     return abs_path
 
 
-# Abstract Base Class
 class XYBase(ABC):
     """
     Base class to collect all data and methods common to XYBase descendants.
@@ -73,6 +65,7 @@ class XYBase(ABC):
 
     @property
     def guid(self):
+        """Returns a globally unique identifier."""
         return self._guid
 
     def serialize(self, folder, filename):
