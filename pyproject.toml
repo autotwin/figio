@@ -13,6 +13,7 @@ classifiers = [
   'Programming Language :: Python',
 ]
 description = "figio"
+version = "0.0.1"
 #long_description = "A declarative program for plotting (x, y) and histogram data"
 dependencies = [
   "matplotlib",
@@ -22,8 +23,8 @@ dependencies = [
   "scipy",
   "tzlocal",
 ]
-dynamic = ["version"]
-license = {file = "LICENSE"}
+# dynamic = ["version"]  # look at cargo
+# license = {file = "LICENSE"}
 name = "figio"
 requires-python = '>=3.9,<3.13'
 

@@ -61,4 +61,4 @@ jobs:
         run: pip install --upgrade pip twine
       - name: Upload
         if: github.event_name == 'release'
-        run: twine upload -u __token__ -p ${{ secrets.TEMP_TOKEN }} dist/*
+        run: twine upload -u __token__ -p ${{ secrets.PYPI_FIGIO_TOKEN }} dist/*
