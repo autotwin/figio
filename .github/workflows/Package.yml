@@ -59,8 +59,6 @@ jobs:
           python-version: 3.12
       - name: Requirements
         run: pip install --upgrade pip twine
-      - name: Wheels
-        run: mv ./*-dist*/*.whl dist/
       - name: Upload
         if: github.event_name == 'release'
         run: twine upload -u __token__ -p ${{ secrets.PYPI_TOKEN }} dist/*
