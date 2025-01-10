@@ -3,4 +3,5 @@
 
 def hello() -> str:
     """This returns the Hello World! greeting."""
+    aa = 4
     return "Hello World!"
