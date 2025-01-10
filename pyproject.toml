@@ -13,6 +13,7 @@ classifiers = [
   'Programming Language :: Python',
 ]
 description = "figio"
+#long_description = "A declarative program for plotting (x, y) and histogram data"
 dependencies = [
   "matplotlib",
   "numpy",
@@ -29,11 +30,14 @@ requires-python = '>=3.9,<3.13'
 [project.optional-dependencies]
 dev = [
   "black",
+  "build",
+  "pip",
   "pdoc",
   "pre-commit",
   "pycodestyle",
   "pytest",
   "pytest-cov",
+  "twine",
 ]
 
 # Entry Points

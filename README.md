@@ -23,3 +23,11 @@ Install the code in editable form,
 ```sh
 pip install -e .[dev]
 ```
+
+## Manual Distribution
+
+```sh
+python -m build . --sdist  # source distribution
+python -m build . --wheel
+twine check dist/*
+```

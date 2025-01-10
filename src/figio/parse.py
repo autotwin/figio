@@ -85,14 +85,13 @@ for item in (da,):
         )
         print(f"base.folder = {base.folder}")
         print(f"base.file = {base.file}")
-        breakpoint()
+        # breakpoint()
         assert base.folder.is_dir(), f"Error: folder not found {base.folder}"
         assert base.file.is_file(), f"Error: file not found {base.file}"
     else:
         print("base is None")
 
-
-breakpoint()
+# breakpoint()
 
 
 # fb = Path(__file__).parent.joinpath("displacement_sr2_new.yml")

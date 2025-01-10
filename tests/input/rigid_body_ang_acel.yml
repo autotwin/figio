@@ -32,3 +32,4 @@ figure:
   dpi: 100
   latex: false
   serialize: true
+  #save: true

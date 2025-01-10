@@ -10,7 +10,7 @@ def test_model_schema():
     """WIP"""
 
     fa = Path(__file__).parent.joinpath("input", "rigid_body_ang_pos.yml")
-    breakpoint()
+    # breakpoint()
     assert fa.is_file()
     with open(str(fa), "r") as file:
         da = yaml.safe_load(file)
