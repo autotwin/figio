@@ -1,0 +1,3 @@
+resource:
+  folder: ~/autotwin/figio/tests/input
+  file: history_rigid.csv
