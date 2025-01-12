@@ -7,7 +7,7 @@ from pathlib import Path
 
 # import figio.constants as cc
 from figio.factory import XYFactory
-import figio.histogram as hh
+import figio.histogram as histogram
 from figio.xymodel import XYModel, XYModelAbaqus
 from figio.xyview import XYView, XYViewAbaqus
 from figio.yml_to_dict import yml_to_dict
@@ -29,12 +29,10 @@ def command_line(fin: Path) -> bool:
     items = []  # cart of items is empty, fill from factory
     # factory = XYFactory()  # it's static!
 
-    breakpoint()
-
     for item in db:
 
         if "histogram" in item:
-            i = hh.histogram_new(db[item])
+            i = histogram.new(db[item])
             items.append(i)
 
         else:
@@ -47,7 +45,7 @@ def command_line(fin: Path) -> bool:
                 warn_msg += " nothing added to command_line items."
                 print(warn_msg)
 
-    hists = [i for i in items if isinstance(i, hh.Histogram)]
+    hists = [i for i in items if isinstance(i, histogram.Histogram)]
     models = [i for i in items if isinstance(i, (XYModel, XYModelAbaqus))]
     views = [i for i in items if isinstance(i, (XYView, XYViewAbaqus))]
 
