@@ -7,7 +7,8 @@ from pathlib import Path
 
 # import figio.constants as cc
 from figio.factory import XYFactory
-import figio.histogram as histogram
+from figio import histogram
+from figio import figure
 from figio.xymodel import XYModel, XYModelAbaqus
 from figio.xyview import XYView, XYViewAbaqus
 from figio.yml_to_dict import yml_to_dict
@@ -35,6 +36,10 @@ def command_line(fin: Path) -> bool:
             i = histogram.new(db[item])
             items.append(i)
 
+        elif "figure" in item:
+            i = figure.new(db[item])
+            items.append(i)
+
         else:
             kwargs = db[item]
             i = XYFactory.create(item, **kwargs)
@@ -46,6 +51,15 @@ def command_line(fin: Path) -> bool:
                 print(warn_msg)
 
     hists = [i for i in items if isinstance(i, histogram.Histogram)]
+    figures = [i for i in items if isinstance(i, figure.Figure)]
+
+    # TODO: finish iteration
+    for item in figures:
+        # models = item.models
+        breakpoint()
+        foo = hists[0]  # icky hard code for now to see if plots
+        figure.plot(ff=item, hh=foo)
+
     models = [i for i in items if isinstance(i, (XYModel, XYModelAbaqus))]
     views = [i for i in items if isinstance(i, (XYView, XYViewAbaqus))]
 

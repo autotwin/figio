@@ -1,4 +1,4 @@
-"""The histogram type, its constructor, and methods."""
+"""The histogram type, constructor, and methods."""
 
 from typing import NamedTuple
 from pathlib import Path
@@ -37,11 +37,12 @@ class Histogram(NamedTuple):
     # yerr: list[float] | None
 
 
-def valid_plot_kwargs(kw: dict) -> bool:
-    """Validates whether or not the supplied kwargs are able to
-    be processed here."""
+def validate_plot_kwargs(din: dict) -> bool:
+    """Determines if the input dictionary is a valid plot_kwargs schema."""
+
+    # TODO: DRY out code, repeated here at in figure.py
     try:
-        validated_data = plot_kwargs_schema.validate(kw)
+        validated_data = plot_kwargs_schema.validate(din)
         print("Valid: Validated data:", validated_data)
         return True
     except SchemaError as e:
@@ -52,6 +53,10 @@ def valid_plot_kwargs(kw: dict) -> bool:
 def new(db: dict) -> Histogram:
     """Given a dictionary, validates the data from the
     dictionary, and if valid, creates a Histogram."""
+
+    if "plot_kwargs" in db:
+        validate_plot_kwargs(db["plot_kwargs"])
+
     hh = Histogram(
         folder=Path(db["folder"]).expanduser(),
         file=Path(db["folder"]).expanduser().joinpath(db["file"]),
@@ -63,8 +68,9 @@ def new(db: dict) -> Histogram:
     assert hh.folder.is_dir(), f"Folder does not exist: {hh.folder}"
     assert hh.file.is_file, f"File does not exist: {hh.file}"
     # validate plot_kwargs
-    valid_plot_kwargs(hh.plot_kwargs)
 
+    # TODO: validate the entire schema, not just the kwargs below
+    # then the next two checks are obsolete
     assert hh.skip_rows >= 0, f"skip_rows must be >= 0: {hh.skip_rows}"
     assert hh.ycolumn >= 0, f"ycolumn must be >= 0: {hh.ycolumn}"
 
@@ -73,7 +79,7 @@ def new(db: dict) -> Histogram:
     return hh
 
 
-def histogram_view(hh: Histogram):
+def figure(hh: Histogram):
     """Given a Histogram, creates a view."""
     # TODO:
     # reference ~/autotwin/automesh/book/analysis/sphere_with_shells/histogram.py
