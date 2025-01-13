@@ -20,6 +20,7 @@ plot_kwargs_schema = Schema(
         ),  # Ensure bins is a positive integer
         Optional("color", default="black"): str,
         Optional("histtype", default="step"): str,
+        Optional("label", default=""): str,
         Optional("linewidth", default=1.0): And(
             Or(Use(float), Use(int)),  # must be a float or an int
             lambda n: n > 0,  # must be positive

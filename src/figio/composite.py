@@ -33,6 +33,9 @@ def plot_composite(cc: Composite) -> None:
             **hh.plot_kwargs,
         )
 
+    # Add a legend
+    plt.legend()
+
     # Add title and labels
     # ax.set_title(ff.title)
     fig.suptitle(ff.title)
