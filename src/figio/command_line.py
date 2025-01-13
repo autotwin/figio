@@ -58,7 +58,7 @@ def command_line(fin: Path) -> bool:
         # models = item.models
         breakpoint()
         foo = hists[0]  # icky hard code for now to see if plots
-        figure.plot(ff=item, hh=foo)
+        figure.plot_histogram(ff=item, hh=foo)
 
     models = [i for i in items if isinstance(i, (XYModel, XYModelAbaqus))]
     views = [i for i in items if isinstance(i, (XYView, XYViewAbaqus))]

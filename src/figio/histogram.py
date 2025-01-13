@@ -3,6 +3,7 @@
 from typing import NamedTuple
 from pathlib import Path
 
+import numpy as np
 from schema import Schema, And, Or, Use, Optional, SchemaError
 
 # Define the schema for plot_kwargs
@@ -25,6 +26,7 @@ class Histogram(NamedTuple):
     # density: bool
     folder: Path
     file: Path
+    data: np.ndarray
     # histtype: str
     # orientation: str
     plot_kwargs: dict
@@ -57,30 +59,48 @@ def new(db: dict) -> Histogram:
     if "plot_kwargs" in db:
         validate_plot_kwargs(db["plot_kwargs"])
 
-    hh = Histogram(
-        folder=Path(db["folder"]).expanduser(),
-        file=Path(db["folder"]).expanduser().joinpath(db["file"]),
-        plot_kwargs=db["plot_kwargs"],
-        skip_rows=db["skip_rows"],
-        ycolumn=db["ycolumn"],
-    )
-
-    assert hh.folder.is_dir(), f"Folder does not exist: {hh.folder}"
-    assert hh.file.is_file, f"File does not exist: {hh.file}"
-    # validate plot_kwargs
+    folder = Path(db["folder"]).expanduser()
+    file = Path(db["folder"]).expanduser().joinpath(db["file"])
+    assert folder.is_dir(), f"Folder does not exist: {folder}"
+    assert file.is_file, f"File does not exist: {file}"
 
     # TODO: validate the entire schema, not just the kwargs below
     # then the next two checks are obsolete
-    assert hh.skip_rows >= 0, f"skip_rows must be >= 0: {hh.skip_rows}"
-    assert hh.ycolumn >= 0, f"ycolumn must be >= 0: {hh.ycolumn}"
+    skip_rows = db["skip_rows"]
+    ycolumn = db["ycolumn"]
+    assert skip_rows >= 0, f"skip_rows must be >= 0: {skip_rows}"
+    assert ycolumn >= 0, f"ycolumn must be >= 0: {ycolumn}"
 
-    # TODO: load the data into the Histogram
+    # load the data into the Histogram
+    try:
+        data = np.genfromtxt(
+            str(file),
+            dtype="float",
+            delimiter=",",
+            skip_header=db["skip_rows"],
+            skip_footer=0,
+            usecols=(db["ycolumn"]),
+        )
+    except FileNotFoundError as e:
+        print(f"File not found: {e}")
+    except ValueError as e:
+        print(f"Value error: {e}")
+    except IOError as e:
+        print(f"I/O error: {e}")
+    except TypeError as e:
+        print(f"Type error: {e}")
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+
+    hh = Histogram(
+        folder=Path(db["folder"]).expanduser(),
+        file=Path(db["folder"]).expanduser().joinpath(db["file"]),
+        data=data,
+        plot_kwargs=db["plot_kwargs"],
+        skip_rows=skip_rows,
+        ycolumn=ycolumn,
+    )
+
+    # validate plot_kwargs
 
     return hh
-
-
-def figure(hh: Histogram):
-    """Given a Histogram, creates a view."""
-    # TODO:
-    # reference ~/autotwin/automesh/book/analysis/sphere_with_shells/histogram.py
-    pass
