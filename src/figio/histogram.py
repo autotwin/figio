@@ -6,14 +6,25 @@ from pathlib import Path
 import numpy as np
 from schema import Schema, And, Or, Use, Optional, SchemaError
 
+from figio import utility
+
 # Define the schema for plot_kwargs
 plot_kwargs_schema = Schema(
     {
-        Optional("color"): str,
-        Optional("linewidth"): And(
+        Optional("alpha", default=1.0): And(
+            Or(Use(float), Use(int)),  # must be a float or an int
+            lambda n: n >= 0 and n <= 1,  # must be between 0 and 1
+        ),  # Ensure alpha is a float between 0 and 1
+        Optional("bins", default=20): And(
+            Use(int), lambda n: n > 0
+        ),  # Ensure bins is a positive integer
+        Optional("color", default="black"): str,
+        Optional("histtype", default="step"): str,
+        Optional("linewidth", default=1.0): And(
             Or(Use(float), Use(int)),  # must be a float or an int
             lambda n: n > 0,  # must be positive
         ),  # Ensure linewidth is a positive float
+        Optional("log", default=True): bool,
     },
     ignore_extra_keys=True,
 )
@@ -56,8 +67,16 @@ def new(db: dict) -> Histogram:
     """Given a dictionary, validates the data from the
     dictionary, and if valid, creates a Histogram."""
 
+    plot_kwargs = utility.get_default_values(schema=plot_kwargs_schema)
+    print(f"Default plot_kwargs: {plot_kwargs}")
+
     if "plot_kwargs" in db:
-        validate_plot_kwargs(db["plot_kwargs"])
+        user_kwargs = db["plot_kwargs"]
+        plot_kwargs.update(user_kwargs)
+        print(f"Updated plot_kwargs: {plot_kwargs}")
+
+    validate_plot_kwargs(plot_kwargs)
+    breakpoint()
 
     folder = Path(db["folder"]).expanduser()
     file = Path(db["folder"]).expanduser().joinpath(db["file"])
@@ -96,11 +115,9 @@ def new(db: dict) -> Histogram:
         folder=Path(db["folder"]).expanduser(),
         file=Path(db["folder"]).expanduser().joinpath(db["file"]),
         data=data,
-        plot_kwargs=db["plot_kwargs"],
+        plot_kwargs=plot_kwargs,
         skip_rows=skip_rows,
         ycolumn=ycolumn,
     )
-
-    # validate plot_kwargs
 
     return hh

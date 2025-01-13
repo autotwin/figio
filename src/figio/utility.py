@@ -4,6 +4,7 @@ import os
 from datetime import datetime
 import socket
 
+from schema import Schema
 from tzlocal import get_localzone
 
 
@@ -25,3 +26,20 @@ def timestamp(figure_name: str) -> str:
     details = figure_name + " created " + dts + " by " + user + " on " + host
 
     return details
+
+
+def get_default_values(schema: Schema):
+    """Function to extract default values from the schema"""
+
+    defaults = {}
+    for key, _ in schema.schema.items():
+        if isinstance(key, Optional):
+            if hasattr(key, "default"):
+                # defaults[key] = key.default
+                defaults[key.key] = key.default
+        # else:
+        # If there are no defaults,
+        # choose to add them as None or skip
+        # defaults[key] = None
+
+    return defaults
