@@ -47,6 +47,7 @@ class Figure(NamedTuple):
     title: str
     xlabel: str
     ylabel: str
+    # yaxis_rhs: RhsAxis | None
 
 
 def validate_schema(din: dict) -> bool:

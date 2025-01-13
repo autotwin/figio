@@ -7,8 +7,7 @@ from pathlib import Path
 
 # import figio.constants as cc
 from figio.factory import XYFactory
-from figio import histogram
-from figio import figure
+from figio import composite, figure, histogram
 from figio.xymodel import XYModel, XYModelAbaqus
 from figio.xyview import XYView, XYViewAbaqus
 from figio.yml_to_dict import yml_to_dict
@@ -33,7 +32,7 @@ def command_line(fin: Path) -> bool:
     for item in db:
 
         if "histogram" in item:
-            i = histogram.new(db[item])
+            i = histogram.new(guid=item, db=db[item])
             items.append(i)
 
         elif "figure" in item:
@@ -55,10 +54,20 @@ def command_line(fin: Path) -> bool:
 
     # TODO: finish iteration
     for item in figures:
-        # models = item.models
+
+        view_models = [hh for hh in hists if hh.guid in item.models]
+
+        # make a composite view
+        # a_view = view.View(figure=item, models=view_models)
+        a_comp = composite.Composite(figure=item, models=view_models)
         breakpoint()
-        foo = hists[0]  # icky hard code for now to see if plots
-        figure.plot_histogram(ff=item, hh=foo)
+
+        composite.plot_composite(a_comp)
+
+        # for model in item.models:
+        #     # models = item.models
+        #     foo = hists[0]  # icky hard code for now to see if plots
+        #     figure.plot_histogram(ff=item, hh=foo)
 
     models = [i for i in items if isinstance(i, (XYModel, XYModelAbaqus))]
     views = [i for i in items if isinstance(i, (XYView, XYViewAbaqus))]

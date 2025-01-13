@@ -35,9 +35,10 @@ class Histogram(NamedTuple):
 
     # bins: int
     # density: bool
+    data: np.ndarray
     folder: Path
     file: Path
-    data: np.ndarray
+    guid: str
     # histtype: str
     # orientation: str
     plot_kwargs: dict
@@ -63,9 +64,10 @@ def validate_plot_kwargs(din: dict) -> bool:
         return False
 
 
-def new(db: dict) -> Histogram:
-    """Given a dictionary, validates the data from the
-    dictionary, and if valid, creates a Histogram."""
+def new(guid: str, db: dict) -> Histogram:
+    """Given a globally unique identifier string and a dictionary,
+    validates the data from the dictionary, and if valid,
+    creates a Histogram."""
 
     plot_kwargs = utility.get_default_values(schema=plot_kwargs_schema)
     print(f"Histogram default plot_kwargs: {plot_kwargs}")
@@ -76,7 +78,6 @@ def new(db: dict) -> Histogram:
         print(f"Histogram updated plot_kwargs: {plot_kwargs}")
 
     validate_plot_kwargs(plot_kwargs)
-    breakpoint()
 
     folder = Path(db["folder"]).expanduser()
     file = Path(db["folder"]).expanduser().joinpath(db["file"])
@@ -114,6 +115,7 @@ def new(db: dict) -> Histogram:
     hh = Histogram(
         folder=Path(db["folder"]).expanduser(),
         file=Path(db["folder"]).expanduser().joinpath(db["file"]),
+        guid=guid,
         data=data,
         plot_kwargs=plot_kwargs,
         skip_rows=skip_rows,
