@@ -4,7 +4,7 @@ import os
 from datetime import datetime
 import socket
 
-from schema import Schema
+from schema import Schema, Optional
 from tzlocal import get_localzone
 
 

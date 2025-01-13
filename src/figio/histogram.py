@@ -68,12 +68,12 @@ def new(db: dict) -> Histogram:
     dictionary, and if valid, creates a Histogram."""
 
     plot_kwargs = utility.get_default_values(schema=plot_kwargs_schema)
-    print(f"Default plot_kwargs: {plot_kwargs}")
+    print(f"Histogram default plot_kwargs: {plot_kwargs}")
 
     if "plot_kwargs" in db:
         user_kwargs = db["plot_kwargs"]
         plot_kwargs.update(user_kwargs)
-        print(f"Updated plot_kwargs: {plot_kwargs}")
+        print(f"Histogram updated plot_kwargs: {plot_kwargs}")
 
     validate_plot_kwargs(plot_kwargs)
     breakpoint()
