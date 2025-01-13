@@ -55,24 +55,18 @@ def command_line(fin: Path) -> bool:
     # TODO: finish iteration
     for item in figures:
 
-        view_models = [hh for hh in hists if hh.guid in item.models]
+        print(f"Draw models: {item.models} on: {item.file.name}")
+        models = [hh for hh in hists if hh.guid in item.models]
 
         # make a composite view
         # a_view = view.View(figure=item, models=view_models)
-        a_comp = composite.Composite(figure=item, models=view_models)
-        breakpoint()
+        a_comp = composite.Composite(figure=item, models=models)
 
         composite.plot_composite(a_comp)
 
-        # for model in item.models:
-        #     # models = item.models
-        #     foo = hists[0]  # icky hard code for now to see if plots
-        #     figure.plot_histogram(ff=item, hh=foo)
-
+    # TODO: refactor old models and views into above form
     models = [i for i in items if isinstance(i, (XYModel, XYModelAbaqus))]
     views = [i for i in items if isinstance(i, (XYView, XYViewAbaqus))]
-
-    breakpoint()
 
     for view in views:
         print(f'Creating view with guid = "{view.guid}"')
