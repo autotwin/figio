@@ -18,7 +18,12 @@ class XYFactory:
     @staticmethod
     def create(item, **kwargs):
         "Main factory method, returns XY objects."
-        instance = FACTORY_ITEMS.get(kwargs["class"], None)
+        if item.startswith("xymodel"):
+            instance = XYModel
+        elif item.startswith("xyfigure"):
+            instance = XYView
+        else:
+            instance = FACTORY_ITEMS.get(kwargs["class"], None)
         if instance:
             return instance(item, **kwargs)
 

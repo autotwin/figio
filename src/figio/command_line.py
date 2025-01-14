@@ -31,11 +31,11 @@ def command_line(fin: Path) -> bool:
 
     for item in db:
 
-        if "histogram" in item:
+        if item.startswith("hmodel"):
             i = histogram.new(guid=item, db=db[item])
             items.append(i)
 
-        elif "figure" in item:
+        elif item.startswith("hfigure"):
             i = figure.new(db[item])
             items.append(i)
 
@@ -74,6 +74,12 @@ def command_line(fin: Path) -> bool:
         if view.model_keys:  # register only selected models with current view
             print(f"  Adding {view.model_keys} model(s) to current view.")
             view.models = [m for m in models if m.guid in view.model_keys]
+            if len(view.models) == 0:
+                warn_msg = "Warning:\n"
+                warn_msg += "  Current view has no associated models.\n"
+                warn_msg += "  Check the view 'model_keys' match with'\n"
+                warn_msg += "  'xymodel_*' in the .yml file."
+                print(warn_msg)
             view.figure()  # must be within this subset scope
         else:
             print("  Adding all models to current view.")
