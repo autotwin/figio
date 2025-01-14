@@ -29,6 +29,14 @@ def command_line(fin: Path) -> bool:
     items = []  # cart of items is empty, fill from factory
     # factory = XYFactory()  # it's static!
 
+    print("====================================")
+    print("Information")
+    print("For (x, y) data and time series data:")
+    print("  xymodel_* items associate with xyfigure_* items.")
+    print("For histogram data:")
+    print("  hmodel_* items associate with hfigure_* items.")
+    print("====================================")
+
     for item in db:
 
         if item.startswith("hmodel"):
