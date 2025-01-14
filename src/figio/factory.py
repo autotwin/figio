@@ -1,20 +1,6 @@
-#!/usr/bin/env python
-# Client to create figures for Military Specification journal manuscript.
-# To run from command line with Python3:
-# [base_directory]: $ python ~/sibl/xyfigure/client.py input_file.json
+"""This module is the factory, creator of models and views."""
 
-# https://www.python.org/dev/peps/pep-0008/#imports
-# standard library imports
-
-# related third-party imports
-
-# local application/library specific imports
-# from xyfigure.xymodel import XYModel
-# from xyfigure.code.xymodel import XYModel
 from figio.xymodel import XYModel, XYModelAbaqus
-
-# from xyfigure.xyview import XYView
-# from xyfigure.code.xyview import XYView
 from figio.xyview import XYView, XYViewAbaqus
 
 # Figure Factory
@@ -32,7 +18,12 @@ class XYFactory:
     @staticmethod
     def create(item, **kwargs):
         "Main factory method, returns XY objects."
-        instance = FACTORY_ITEMS.get(kwargs["class"], None)
+        if item.startswith("xymodel"):
+            instance = XYModel
+        elif item.startswith("xyfigure"):
+            instance = XYView
+        else:
+            instance = FACTORY_ITEMS.get(kwargs["class"], None)
         if instance:
             return instance(item, **kwargs)
 
