@@ -13,7 +13,7 @@ classifiers = [
   'Programming Language :: Python',
 ]
 description = "figio"
-version = "0.0.3"
+version = "0.0.4"
 readme = "README.md"
 #long_description = "A declarative method for plotting (x, y) and histogram data"
 dependencies = [
