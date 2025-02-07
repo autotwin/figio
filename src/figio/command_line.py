@@ -39,11 +39,13 @@ def command_line(fin: Path) -> bool:
 
     for item in db:
 
-        if item.startswith("hmodel"):
+        # if item.startswith("hmodel"):
+        if db[item]["type"] == "hmodel":
             i = histogram.new(guid=item, db=db[item])
             items.append(i)
 
-        elif item.startswith("hfigure"):
+        # elif item.startswith("hfigure"):
+        elif db[item]["type"] == "hview":
             i = figure.new(db[item])
             items.append(i)
 

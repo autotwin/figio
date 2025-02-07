@@ -90,7 +90,7 @@ constructed and shown on the view.
 
 |     |     |     |
 | --- | --- | --- |
-| `class:`            | `xymodel` `hmodel` | For `(x, y)` data and time series data, `class: xymodel` items associate with `class: xyview` items.  For histogram data, `class: hmodel` items associate with `class: hview` items.
+| `type:`            | `xymodel` `hmodel` | For `(x, y)` data and time series data, `type: xymodel` items associate with `type: xyview` items.  For histogram data, `type: hmodel` items associate with `type: hview` items.
 | `folder:`           | string    | Value of the absolute file path to the `file`.  Supports `~` for user home constructs `~/my_project/input_files` as equilvalent to, for example, `/Users/chovey/my_project/input_files`. For the current working directory, use `./`.
 | `file:`             | string    | Value of the comma separated value input file in `csv` (comma separated value) format.  The first column is the `x` values, the second column(s) is(are) the `y` value(s).  The `csv` file can use any number of header rows.  Do not attempt to plot header rows; skip header rows with the `skip_rows` key.
 | `skip_rows:`        | integer   | *optional*<br>The number of header rows to skip at the *beginning* of the `csv` file.  Default value is `0`.
@@ -172,7 +172,7 @@ The view dictionary contains items that describe how the main figure is construc
 
 |     |     |     |
 | --- | --- | --- |
-| `class:`            | `xyview` `hview` | For `(x, y)` data and time series data, `class: xymodel` items associate with `class: xyview` items.  For histogram data, `class: hmodel` items associate with `class: hview` items.
+| `type:`            | `xyview` `hview` | For `(x, y)` data and time series data, `type: xymodel` items associate with `type: xyview` items.  For histogram data, `type: hmodel` items associate with `type: hview` items.
 | `model_keys`:       | string array | *optional*<br>`[model_guid_0, model_guid_1, model_guid_2]` (for example), an array of `1..m` strings that identifies the model `guid` to be plotted in this particular view.  If `model_keys` is not specified in a particular view, then all models will be plotted to the view, which is the default behavior.
 | `folder:`           | string    | Value of the absolute file path to the `file`.  Supports `~` for user home constructs `~/my_project/output_files` as equilvalent to, for example, `/Users/chovey/my_project/output_files`.
 | `file:`             | string      | Value of the figure output file (e.g., `my_output_file.png`) in `.xxx` format, where `xxx` is an image file format, typically `pdf`, `png`, or `svg`.  

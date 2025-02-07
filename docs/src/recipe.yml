@@ -1,5 +1,5 @@
 sine-data:
-  class: xymodel
+  type: xymodel
   folder: ./  # the current directory
   file: data.csv
   skip_rows: 1
@@ -10,7 +10,7 @@ sine-data:
     linewidth: 4
     alpha: 0.5
 cosine-data:
-  class: xymodel
+  type: xymodel
   folder: ./  # the current directory
   file: data.csv
   skip_rows: 1
@@ -20,7 +20,7 @@ cosine-data:
     linestyle: "-."
     linewidth: 2
 figure:
-  class: xyview
+  type: xyview
   folder: ./  # the current directory
   file: recipe.svg
   size: [ 8.0, 6.0 ]

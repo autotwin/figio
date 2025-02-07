@@ -1,5 +1,5 @@
 s10_aspect:
-  class: hmodel
+  type: hmodel
   folder: ~/temp
   file: sr2s10.csv
   skip_rows: 1
@@ -10,7 +10,7 @@ s10_aspect:
     label: sr2s10
     linewidth: 2.0
 s10_msj:
-  class: hmodel
+  type: hmodel
   folder: ~/temp
   file: sr2s10.csv
   skip_rows: 1
@@ -21,7 +21,7 @@ s10_msj:
     label: sr2s10
     linewidth: 2.0
 s10_skew:
-  class: hmodel
+  type: hmodel
   folder: ~/temp
   file: sr2s10.csv
   skip_rows: 1
@@ -32,7 +32,7 @@ s10_skew:
     label: sr2s10
     linewidth: 2.0
 s10_vol:
-  class: hmodel
+  type: hmodel
   folder: ~/temp
   file: sr2s10.csv
   skip_rows: 1
@@ -43,7 +43,7 @@ s10_vol:
     label: sr2s10
     linewidth: 2.0
 s50_aspect:
-  class: hmodel
+  type: hmodel
   folder: ~/temp
   file: sr2s50.csv
   skip_rows: 1
@@ -54,7 +54,7 @@ s50_aspect:
     label: sr2s50
     linewidth: 2.0
 s50_msj:
-  class: hmodel
+  type: hmodel
   folder: ~/temp
   file: sr2s50.csv
   skip_rows: 1
@@ -65,7 +65,7 @@ s50_msj:
     label: sr2s50
     linewidth: 2.0
 s50_skew:
-  class: hmodel
+  type: hmodel
   folder: ~/temp
   file: sr2s50.csv
   skip_rows: 1
@@ -76,7 +76,7 @@ s50_skew:
     label: sr2s50
     linewidth: 2.0
 s50_vol:
-  class: hmodel
+  type: hmodel
   folder: ~/temp
   file: sr2s50.csv
   skip_rows: 1
@@ -87,7 +87,7 @@ s50_vol:
     label: sr2s50
     linewidth: 2.0
 figure_aspect:
-  class: hview
+  type: hview
   models: [s10_aspect, s50_aspect]
   folder: ~/temp
   file: hist_sr2sx_aspect.png
@@ -101,8 +101,8 @@ figure_aspect:
   latex: false
   save: true
 figure_msj:
-  class: hview
-  models: [10_msj, 50_msj]
+  type: hview
+  models: [s10_msj, s50_msj]
   folder: ~/temp
   file: hist_sr2sx_msj.png
   size: [8.0, 6.0]
@@ -115,7 +115,7 @@ figure_msj:
   latex: false
   save: true
 figure_skew:
-  class: hview
+  type: hview
   models: [s10_skew, s50_skew]
   folder: ~/temp
   file: hist_sr2sx_skew.png
@@ -129,8 +129,8 @@ figure_skew:
   latex: false
   save: true
 figure_vol:
-  class: hview
-  models: [s10_vol, 50_vol]
+  type: hview
+  models: [s10_vol, s50_vol]
   folder: ~/temp
   file: hist_sr2sx_vol.png
   size: [8.0, 6.0]

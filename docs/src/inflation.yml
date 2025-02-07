@@ -1,5 +1,5 @@
 inflation-data:
-  class: xymodel
+  type: xymodel
   folder: ./  # the current directory
   file: inflation.csv
   skip_rows: 1
@@ -10,7 +10,7 @@ inflation-data:
     marker: "."  # point marker
   ycolumn: 1
 inflation-figure:
-  class: xyview
+  type: xyview
   folder: ./  # the current directory
   file: inflation.svg  # the output file
   size: [ 8.0, 6.0 ]

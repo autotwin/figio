@@ -27,7 +27,8 @@ class XYFactory:
         # else:
         #     # instance = FACTORY_ITEMS.get(kwargs["class"], None)
         #     instance = FACTORY_ITEMS.get(kwargs["type"], None)
-        instance = FACTORY_ITEMS.get(kwargs["class"], None)
+        # instance = FACTORY_ITEMS.get(kwargs["class"], None)
+        instance = FACTORY_ITEMS.get(kwargs["type"], None)
         if instance:
             return instance(item, **kwargs)
 
