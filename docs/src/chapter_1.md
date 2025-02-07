@@ -58,7 +58,7 @@ constructed and shown on the view.
 
 |     |     |     |
 | --- | --- | --- |
-| `class:`            | `model` | Specific string to generate the XYModel Python class.  In the model dictionary, the `"class"` key  must have a value of `"model"`.
+| `class:`            | `xymodel` `hmodel` | For `(x, y)` data and time series data, `class: xymodel` items associate with `class: xyview` items.  For histogram data, `class: hmodel` items associate with `class: hview` items.
 | `folder:`           | string    | Value of the absolute file path to the `file`.  Supports `~` for user home constructs `~/my_project/input_files` as equilvalent to, for example, `/Users/chovey/my_project/input_files`. For the current working directory, use `./`.
 | `file:`             | string    | Value of the comma separated value input file in `csv` (comma separated value) format.  The first column is the `x` values, the second column(s) is(are) the `y` value(s).  The `csv` file can use any number of header rows.  Do not attempt to plot header rows; skip header rows with the `skip_rows` key.
 | `skip_rows:`        | integer   | *optional*<br>The number of header rows to skip at the *beginning* of the `csv` file.  Default value is `0`.
@@ -101,51 +101,37 @@ This dictionary is currently under active development.  For additional documenta
 Below is a summary of the `key: value` pairs available within the `signal_process` dictionary.
 
 ```yml
-        signal_process: {
-            process_guid_1: {
-                butterworth: {
-                    cutoff: 5,
-                    order: 4,
+        signal_process:
+            process_guid_1:
+                butterworth:
+                    cutoff: 5
+                    order: 4
                     type: low
-                }
-            }
-            process_guid_2: {
-                gradient: {
+            process_guid_2:
+                gradient:
                     order: 1
-                }
-            }
-            process_guid_3: {
-                integration: {
-                    order: 3,
+            process_guid_3:
+                integration:
+                    order: 3
                     initial_conditions: [-10, 100, 1000]
-                }
-            }
-            process_guid_4: {
-                crosscorrelation: {
-                    model_keys: [model_guid_0, model_guid_1],
+            process_guid_4:
+                crosscorrelation:
+                    model_keys: [model_guid_0, model_guid_1]
                     mode: full # (valid | same)
-                }
-            }
-            process_guid_5: {
+            process_guid_5:
                 tpav: { (tpav is three points angular velocity)
                     model_keys: [model_guid_0, model_guid_1, model_guid_2]
-                }
-            }
-        }
 ```
 
 All processes support serialization, via
 
 ```yml
-        signal_process: {
-            process_guid: {
-                process_key_string: {
+        signal_process:
+            process_guid:
+                process_key_string:
                     serialize: 1
                     folder: ~/sibl/cli/io/example
                     file: processed_output_file.csv
-                }
-            }
-        }
 ```
 
 ### View Dictionary
@@ -154,7 +140,7 @@ The view dictionary contains items that describe how the main figure is construc
 
 |     |     |     |
 | --- | --- | --- |
-| `class:`            | `view`    | Specific string to generate the figure. In the view dictionary, the `class` key must have a value of `view`.
+| `class:`            | `xyview` `hview` | For `(x, y)` data and time series data, `class: xymodel` items associate with `class: xyview` items.  For histogram data, `class: hmodel` items associate with `class: hview` items.
 | `model_keys`:       | string array | *optional*<br>`[model_guid_0, model_guid_1, model_guid_2]` (for example), an array of `1..m` strings that identifies the model `guid` to be plotted in this particular view.  If `model_keys` is not specified in a particular view, then all models will be plotted to the view, which is the default behavior.
 | `folder:`           | string    | Value of the absolute file path to the `file`.  Supports `~` for user home constructs `~/my_project/output_files` as equilvalent to, for example, `/Users/chovey/my_project/output_files`.
 | `file:`             | string      | Value of the figure output file (e.g., `my_output_file.png`) in `.xxx` format, where `xxx` is an image file format, typically `pdf`, `png`, or `svg`.  
