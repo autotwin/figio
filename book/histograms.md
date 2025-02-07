@@ -1,4 +1,4 @@
-# Chapter 4: Histograms
+# Histograms
 
 Given a particular column from a `csv` data source, `figio` can create a frequency count histogram.
 We illustrate this functionality on a large data set called `sr2s10.csv` (5.4 MB) and `sr2s50.csv` (11 MB).
