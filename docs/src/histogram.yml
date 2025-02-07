@@ -89,8 +89,8 @@ s50_vol:
 figure_aspect:
   type: hview
   models: [s10_aspect, s50_aspect]
-  folder: ~/temp
-  file: hist_sr2sx_aspect.png
+  folder: ./  # the current directory
+  file: hist_sr2sx_aspect.svg
   size: [8.0, 6.0]
   title: Maximum Aspect Ratio
   xlabel: Maximum Aspect Ratio
@@ -103,8 +103,8 @@ figure_aspect:
 figure_msj:
   type: hview
   models: [s10_msj, s50_msj]
-  folder: ~/temp
-  file: hist_sr2sx_msj.png
+  folder: ./  # the current directory
+  file: hist_sr2sx_msj.svg
   size: [8.0, 6.0]
   title: Minimum Scaled Jacobian
   xlabel: Minimum Scaled Jacobian
@@ -117,8 +117,8 @@ figure_msj:
 figure_skew:
   type: hview
   models: [s10_skew, s50_skew]
-  folder: ~/temp
-  file: hist_sr2sx_skew.png
+  folder: ./  # the current directory
+  file: hist_sr2sx_skew.svg
   size: [8.0, 6.0]
   title: Maximum Skew
   xlabel: Maximum Skew
@@ -131,8 +131,8 @@ figure_skew:
 figure_vol:
   type: hview
   models: [s10_vol, s50_vol]
-  folder: ~/temp
-  file: hist_sr2sx_vol.png
+  folder: ./  # the current directory
+  file: hist_sr2sx_vol.svg
   size: [8.0, 6.0]
   title: Element Volume
   xlabel: Element Volume

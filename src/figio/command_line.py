@@ -32,9 +32,9 @@ def command_line(fin: Path) -> bool:
     print("====================================")
     print("Information")
     print("For (x, y) data and time series data:")
-    print("  class: xymodel items associate with class: xyview items.")
+    print("  type: xymodel items associate with type: xyview items.")
     print("For histogram data:")
-    print("  class: hmodel items associate with class: hview items.")
+    print("  type: hmodel items associate with type: hview items.")
     print("====================================")
 
     for item in db:
