@@ -1,3 +1,35 @@
+# Chapter 3: Multiple Series
+
+We show an examples of multiple series using default and non-default values for the line specifications (color, transparency, type).
+
+The file [data.csv](data.csv)
+contains colums for `time (s),sin(t),cos(2t)`.
+
+```sh
+<!-- cmdrun more data.csv -->
+```
+
+To plot this data, we create a `yml` input file called
+[`recipe.yml`](recipe.yml).
+
+```yml
+<!-- cmdrun more recipe.yml -->
+```
+
+Run `figio` on the input file to produce the figure:
+
+```sh
+figio recipe.yml
+
+<!-- cmdrun figio recipe.yml -->
+```
+
+The following figure appears:
+
+![recipe](recipe.svg)
+
+Congratulations!  You just made a `figio` figure with two data sources.
+
 # Chapter 2: Keys and Values
 
 Below are dictionary `key: value` pairs, followed by a description, for each
@@ -80,7 +112,7 @@ Dictionary that overrides the [`matplotlib.pyplot.plot()` kwargs](https://matplo
 | --- | --- | --- |
 | `linewidth:` | float  | *optional*<br> Default value is `2.0`. See [matplotlib lines Line2D](https://matplotlib.org/stable/api/_as_gen/matplotlib.lines.Line2D.html) for more detail.
 | `linestyle:` | string | *optional*<br>Default value is `"-"`, which is a solid line. See [matplotlib linestyles](https://matplotlib.org/stable/gallery/lines_bars_and_markers/linestyles.html) for more detail.
-|                |        | *Some frequently used *optional values* follow.<br>If the keys are omitted, then the matplotlib defaults are used.*<br><br>
+|                |        | <br>*Some frequently used *optional values* follow.<br>If the keys are omitted, then the matplotlib defaults are used.*<br><br>
 | `marker:`    | string | *optional*<br>The string to designate a marker at the data point.  See [matplotlib marker](https://matplotlib.org/stable/api/markers_api.html) documentation.
 | `label:`     | string | *optional*<br>The string appearing in the legend correponding to the data.
 | `color:`     | string | *optional*<br>The matplotlib [color](https://matplotlib.org/stable/users/explain/colors/colors.html) used to plot the data.  See also matplotlib color [defaults](https://matplotlib.org/stable/users/prev_whats_new/dflt_style_changes.html) and predefined color [names](https://matplotlib.org/stable/gallery/color/named_colors.html).
@@ -192,7 +224,7 @@ quality [*matplotlib*](https://matplotlib.org)
 and $\LaTeX$ figures.
 
 The following figure types are currently supported:
-* `(x, y)` data, and
+* `(x, y)` data (or, equivalently, time series data), and
 * histogram data.
 
 ## Installation
@@ -218,32 +250,33 @@ pip install figio
 
 ## Getting Started
 
-Tabular data is used as the data source of `figio` figures.  Let's get started
-with a tabular data for a sine and a cosine wave.  Tabular data typically
-occurs in `csv` (comma separate value) file format.  The file [data.csv](data.csv)
-contains colums for `time (s),sin(t),cos(2t)`.
+Tabular data is used as the data source of `figio` figures.
+Let's get started with a tabular data for the inflation rate,
+measured on the first day or each year.
+The tabular data, [inflation.csv](inflation.csv), comes from the
+[Federal Reserve Bank of St. Louis](https://fred.stlouisfed.org/series/FPCPITOTLZGUSA).
 
 ```sh
-<!-- cmdrun more data.csv -->
+<!-- cmdrun more inflation.csv -->
 ```
 
 To plot this data, we create a `yml` input file called
-[`recipe.yml`](recipe.yml).
+[`inflation.yml`](inflation.yml).
 
 ```yml
-<!-- cmdrun more recipe.yml -->
+<!-- cmdrun more inflation.yml -->
 ```
 
 Run `figio` on the input file to produce the figure:
 
 ```sh
-figio recipe.yml
+figio inflation.yml
 
-<!-- cmdrun figio recipe.yml -->
+<!-- cmdrun figio inflation.yml -->
 ```
 
 The following figure appears:
 
-![recipe](recipe.svg)
+![](inflation.svg)
 
 Congratulations!  You just make your first `figio` figure.

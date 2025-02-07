@@ -1,0 +1,24 @@
+inflation-data:
+  class: xymodel
+  folder: ./  # the current directory
+  file: inflation.csv
+  skip_rows: 1
+  plot_kwargs:
+    label: inflation rate
+    linestyle: "-"  # solid line
+    linewidth: 1.0
+    marker: "."  # point marker
+  ycolumn: 1
+inflation-figure:
+  class: xyview
+  folder: ./  # the current directory
+  file: inflation.svg  # the output file
+  size: [ 8.0, 6.0 ]
+  title: Inflation, consumer prices for the United States (FPCPITOTLZGUSA)
+  xlabel: year
+  ylabel: inflation rate (%)
+  details: false
+  display: true
+  dpi: 100
+  latex: false
+  serialize: true

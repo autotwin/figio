@@ -36,6 +36,7 @@ class Histogram(NamedTuple):
 
     # bins: int
     # density: bool
+    # type: str
     data: np.ndarray
     folder: Path
     file: Path
