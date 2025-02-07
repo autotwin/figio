@@ -1,4 +1,4 @@
-# Chapter 3: Multiple Series
+# Multiple Series
 
 We show an examples of multiple series using default and non-default values for the line specifications (color, transparency, type).
 

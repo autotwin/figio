@@ -1,6 +1,10 @@
 # Summary
 
-- [Chapter 1](chapter_1.md)
-- [Chapter 2](chapter_2.md)
-- [Chapter 3](chapter_3.md)
-- [Chapter 4](chapter_4.md)
+- [Introduction](introduction.md)
+- [Keys and Values](keys_and_values.md)
+- [Multiple Series](multiple_series.md)
+- [Histograms](histograms.md)
+
+-----------
+
+[Contributors](contributors.md)

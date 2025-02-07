@@ -1,4 +1,4 @@
-# Chapter 1: Introduction
+# Introduction
 
 `figio` is Python application that uses declarative [`yml`](https://yaml.org)
 input file recipies to produce high 
