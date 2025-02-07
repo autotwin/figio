@@ -32,18 +32,20 @@ def command_line(fin: Path) -> bool:
     print("====================================")
     print("Information")
     print("For (x, y) data and time series data:")
-    print("  xymodel_* items associate with xyfigure_* items.")
+    print("  type: xymodel items associate with type: xyview items.")
     print("For histogram data:")
-    print("  hmodel_* items associate with hfigure_* items.")
+    print("  type: hmodel items associate with type: hview items.")
     print("====================================")
 
     for item in db:
 
-        if item.startswith("hmodel"):
+        # if item.startswith("hmodel"):
+        if db[item]["type"] == "hmodel":
             i = histogram.new(guid=item, db=db[item])
             items.append(i)
 
-        elif item.startswith("hfigure"):
+        # elif item.startswith("hfigure"):
+        elif db[item]["type"] == "hview":
             i = figure.new(db[item])
             items.append(i)
 

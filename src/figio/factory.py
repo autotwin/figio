@@ -5,8 +5,10 @@ from figio.xyview import XYView, XYViewAbaqus
 
 # Figure Factory
 FACTORY_ITEMS = {
-    "model": XYModel,
-    "view": XYView,
+    # "model": XYModel,
+    # "view": XYView,
+    "xymodel": XYModel,
+    "xyview": XYView,
     "model_abaqus": XYModelAbaqus,
     "view_abaqus": XYViewAbaqus,
 }
@@ -18,12 +20,15 @@ class XYFactory:
     @staticmethod
     def create(item, **kwargs):
         "Main factory method, returns XY objects."
-        if item.startswith("xymodel"):
-            instance = XYModel
-        elif item.startswith("xyfigure"):
-            instance = XYView
-        else:
-            instance = FACTORY_ITEMS.get(kwargs["class"], None)
+        # if item.startswith("xymodel"):
+        #     instance = XYModel
+        # elif item.startswith("xyfigure"):
+        #     instance = XYView
+        # else:
+        #     # instance = FACTORY_ITEMS.get(kwargs["class"], None)
+        #     instance = FACTORY_ITEMS.get(kwargs["type"], None)
+        # instance = FACTORY_ITEMS.get(kwargs["class"], None)
+        instance = FACTORY_ITEMS.get(kwargs["type"], None)
         if instance:
             return instance(item, **kwargs)
 

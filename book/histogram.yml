@@ -1,0 +1,144 @@
+s10_aspect:
+  type: hmodel
+  folder: ~/temp
+  file: sr2s10.csv
+  skip_rows: 1
+  ycolumn: 0
+  plot_kwargs:
+    alpha: 0.7
+    color: blue
+    label: sr2s10
+    linewidth: 2.0
+s10_msj:
+  type: hmodel
+  folder: ~/temp
+  file: sr2s10.csv
+  skip_rows: 1
+  ycolumn: 1
+  plot_kwargs:
+    alpha: 0.7
+    color: blue
+    label: sr2s10
+    linewidth: 2.0
+s10_skew:
+  type: hmodel
+  folder: ~/temp
+  file: sr2s10.csv
+  skip_rows: 1
+  ycolumn: 2
+  plot_kwargs:
+    alpha: 0.7
+    color: blue
+    label: sr2s10
+    linewidth: 2.0
+s10_vol:
+  type: hmodel
+  folder: ~/temp
+  file: sr2s10.csv
+  skip_rows: 1
+  ycolumn: 3
+  plot_kwargs:
+    alpha: 0.7
+    color: blue
+    label: sr2s10
+    linewidth: 2.0
+s50_aspect:
+  type: hmodel
+  folder: ~/temp
+  file: sr2s50.csv
+  skip_rows: 1
+  ycolumn: 0
+  plot_kwargs:
+    alpha: 0.7
+    color: orange
+    label: sr2s50
+    linewidth: 2.0
+s50_msj:
+  type: hmodel
+  folder: ~/temp
+  file: sr2s50.csv
+  skip_rows: 1
+  ycolumn: 1
+  plot_kwargs:
+    alpha: 0.7
+    color: orange
+    label: sr2s50
+    linewidth: 2.0
+s50_skew:
+  type: hmodel
+  folder: ~/temp
+  file: sr2s50.csv
+  skip_rows: 1
+  ycolumn: 2
+  plot_kwargs:
+    alpha: 0.7
+    color: orange
+    label: sr2s50
+    linewidth: 2.0
+s50_vol:
+  type: hmodel
+  folder: ~/temp
+  file: sr2s50.csv
+  skip_rows: 1
+  ycolumn: 3
+  plot_kwargs:
+    alpha: 0.7
+    color: orange
+    label: sr2s50
+    linewidth: 2.0
+figure_aspect:
+  type: hview
+  models: [s10_aspect, s50_aspect]
+  folder: ./  # the current directory
+  file: hist_sr2sx_aspect.svg
+  size: [8.0, 6.0]
+  title: Maximum Aspect Ratio
+  xlabel: Maximum Aspect Ratio
+  ylabel: Frequency
+  details: true
+  display: true
+  dpi: 100
+  latex: false
+  save: true
+figure_msj:
+  type: hview
+  models: [s10_msj, s50_msj]
+  folder: ./  # the current directory
+  file: hist_sr2sx_msj.svg
+  size: [8.0, 6.0]
+  title: Minimum Scaled Jacobian
+  xlabel: Minimum Scaled Jacobian
+  ylabel: Frequency
+  details: true
+  display: true
+  dpi: 100
+  latex: false
+  save: true
+figure_skew:
+  type: hview
+  models: [s10_skew, s50_skew]
+  folder: ./  # the current directory
+  file: hist_sr2sx_skew.svg
+  size: [8.0, 6.0]
+  title: Maximum Skew
+  xlabel: Maximum Skew
+  ylabel: Frequency
+  details: true
+  display: true
+  dpi: 100
+  latex: false
+  save: true
+figure_vol:
+  type: hview
+  models: [s10_vol, s50_vol]
+  folder: ./  # the current directory
+  file: hist_sr2sx_vol.svg
+  size: [8.0, 6.0]
+  title: Element Volume
+  xlabel: Element Volume
+  ylabel: Frequency
+  details: true
+  display: true
+  dpi: 100
+  latex: false
+  save: true

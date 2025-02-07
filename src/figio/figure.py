@@ -45,6 +45,7 @@ class Figure(NamedTuple):
     save: bool
     size: list[float | int]
     title: str
+    type: str
     xlabel: str
     ylabel: str
     # yaxis_rhs: RhsAxis | None
@@ -80,6 +81,7 @@ def new(db: dict) -> Figure:
         save=db["save"],
         size=db["size"],
         title=db["title"],
+        type=db["type"],
         xlabel=db["xlabel"],
         ylabel=db["ylabel"],
     )

@@ -36,6 +36,7 @@ class Histogram(NamedTuple):
 
     # bins: int
     # density: bool
+    type: str
     data: np.ndarray
     folder: Path
     file: Path
@@ -80,6 +81,7 @@ def new(guid: str, db: dict) -> Histogram:
 
     validate_plot_kwargs(plot_kwargs)
 
+    type = db["type"]
     folder = Path(db["folder"]).expanduser()
     file = Path(db["folder"]).expanduser().joinpath(db["file"])
     assert folder.is_dir(), f"Folder does not exist: {folder}"
@@ -114,6 +116,7 @@ def new(guid: str, db: dict) -> Histogram:
         print(f"An unexpected error occurred: {e}")
 
     hh = Histogram(
+        type=type,
         folder=Path(db["folder"]).expanduser(),
         file=Path(db["folder"]).expanduser().joinpath(db["file"]),
         guid=guid,
