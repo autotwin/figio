@@ -33,7 +33,7 @@ There are three common variations to the `figio` dictionary:
 
 Signal processing may be performed on one or more models, using the `signal_process` [dictionary](#signal-processing-keywords-dictionary), to create a new model, which can also be used by the view.  A conceptual flow diagram of multiple models, one with signal processing, and one view is shown below. 
 
-
+```sh
     ┌───────────────┐                                                    ┌───────────────┐
     │     Model     │─────────────────────────┐                          │               │
     └───────────────┘                         │                          │               │
@@ -50,6 +50,7 @@ Signal processing may be performed on one or more models, using the `signal_proc
                        │   │    Signal     │    ┌───────────────┐   │    │               │
                        └──▶│    Process    │───▶│     Model     │───┘    │               │
                            └───────────────┘    └───────────────┘        └───────────────┘
+```
 
 ### Model Dictionary
 
