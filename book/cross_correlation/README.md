@@ -32,7 +32,7 @@ Figure: Reproduction of the sawtooth series on the Anomaly website.[^Anomaly_201
 Create the input file [anomaly_recipe.yml](anomaly_recipe.yml)
 
 ```yml
-<!-- cmdrun more anommaly_recipe.yml -->
+<!-- cmdrun more anomaly_recipe.yml -->
 ```
 
 which makes use of the two data series [signal_a.csv](signal_a.csv) and [signal_b.csv](signal_b.csv).

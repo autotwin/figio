@@ -1,6 +1,7 @@
 signal_a:
   type: xymodel
-  folder: ~/autotwin/figio/book/cross_correlation
+  # folder: ~/autotwin/figio/book/cross_correlation
+  folder: ./  # the current directory
   file: signal_a.csv
   skip_rows: 1
   ycolumn: 1
@@ -13,7 +14,8 @@ signal_a:
     alpha: 0.9
 signal_b:
   type: xymodel
-  folder: ~/autotwin/figio/book/cross_correlation
+  # folder: ~/autotwin/figio/book/cross_correlation
+  folder: ./  # the current directory
   file: signal_b.csv
   skip_rows: 1
   ycolumn: 1
@@ -26,7 +28,8 @@ signal_b:
     alpha: 0.8
 signal_b_correlated:
   type: xymodel
-  folder: ~/autotwin/figio/book/cross_correlation
+  # folder: ~/autotwin/figio/book/cross_correlation
+  folder: ./  # the current directory
   file: signal_b.csv
   skip_rows: 1
   ycolumn: 1
@@ -41,18 +44,21 @@ signal_b_correlated:
     process1:
       correlation:
         reference:
-          folder: ~/autotwin/figio/book/cross_correlation
+          # folder: ~/autotwin/figio/book/cross_correlation
+          folder: ./  # the current directory
           file: signal_a.csv
           skip_rows: 1
           ycolumn: 1
         verbose: true
         serialize: false
-        folder: ~/autotwin/figio/book/cross_correlation
+        # folder: ~/autotwin/figio/book/cross_correlation
+        folder: ./  # the current directory
         file: out_signal_b_correlated.csv
 figure_1:
   type: xyview
   model_keys: [ signal_a, signal_b ]
-  folder: ~/autotwin/figio/book/cross_correlation
+  # folder: ~/autotwin/figio/book/cross_correlation
+  folder: ./  # the current directory
   file: out_anomaly_pre_corr.svg
   title: Anomaly site example, pre-correlation
   xlabel: time (s)
@@ -67,7 +73,8 @@ figure_1:
 figure_2:
   type: xyview
   model_keys: [ signal_a, signal_b_correlated ]
-  folder: ~/autotwin/figio/book/cross_correlation
+  # folder: ~/autotwin/figio/book/cross_correlation
+  folder: ./  # the current directory
   file: out_anomaly_post_corr.svg
   title: Anomaly site example, post-correlation
   xlabel: time (s)
