@@ -18,20 +18,20 @@ and one or more `view` [dictionaries](#view-dictionary).
 
 There are three common variations to the `figio` dictionary:
 
-* **1:1** 
+* **1:1**
   * One model
   * One view
   * This is the most basic option.
-* **1:n** 
+* **1:n**
   * Several models
   * One view
   * This is an advanced option, wherein multiple models are plotted to the same figure.  Considerations such as y-axis limits or the possibility of dual y-axes can become important.
-* **m:n** 
+* **m:n**
   * Several models
   * Several views
   * This is the most advanced combination of the three, where all the models are created, and views explicity specify which models get plotted to a particular figure.
 
-Signal processing may be performed on one or more models, using the `signal_process` [dictionary](#signal-processing-keywords-dictionary), to create a new model, which can also be used by the view.  A conceptual flow diagram of multiple models, one with signal processing, and one view is shown below. 
+Signal processing may be performed on one or more models, using the `signal_process` [dictionary](#signal-processing-keywords-dictionary), to create a new model, which can also be used by the view.  A conceptual flow diagram of multiple models, one with signal processing, and one view is shown below.
 
     ┌───────────────┐                                                    ┌───────────────┐
     │     Model     │─────────────────────────┐                          │               │
@@ -40,7 +40,7 @@ Signal processing may be performed on one or more models, using the `signal_proc
     ┌───────────────┐                         │                          │               │
     │     Model     │─────────────────────────┤                          │               │
     └───────────────┘                         │                          │               │
-            │                                 │                          │     View      │ 
+            │                                 │                          │     View      │
                                               ├─────────────────────┬───▶│               │
             │                                 │                     │    │               │
     ┌───────────────┐                         │                     │    │               │
@@ -142,12 +142,12 @@ The view dictionary contains items that describe how the main figure is construc
 | `type:`            | `xyview` `hview` | For `(x, y)` data and time series data, `type: xymodel` items associate with `type: xyview` items.  For histogram data, `type: hmodel` items associate with `type: hview` items.
 | `model_keys`:       | string array | *optional*<br>`[model_guid_0, model_guid_1, model_guid_2]` (for example), an array of `1..m` strings that identifies the model `guid` to be plotted in this particular view.  If `model_keys` is not specified in a particular view, then all models will be plotted to the view, which is the default behavior.
 | `folder:`           | string    | Value of the absolute file path to the `file`.  Supports `~` for user home constructs `~/my_project/output_files` as equilvalent to, for example, `/Users/chovey/my_project/output_files`.
-| `file:`             | string      | Value of the figure output file (e.g., `my_output_file.png`) in `.xxx` format, where `xxx` is an image file format, typically `pdf`, `png`, or `svg`.  
+| `file:`             | string      | Value of the figure output file (e.g., `my_output_file.png`) in `.xxx` format, where `xxx` is an image file format, typically `pdf`, `png`, or `svg`.
 | `size:`             | float array | *optional*<br>Array of floats containing the `[width, height]` of the output figure in units of inches.  Default is `[11.0, 8.5]`, U.S. paper, landscape.  [Example](test/README_dpi_size.md)
 | `dpi:`              | integer     | *optional*<br>Dots per inch used for the output figure.  Default is `300`. [Example](test/README_dpi_size.md)
 | `xlim:`             | float array | *optional*<br>Array of floats containing the x-axis bounds `[x_min, x_max]`.  Default is MATLABLIB's automatic selection.
 | `ylim:`             | float array | *optional*<br>Array of floats containing the y-axis bounds `[y_min, y_max]`.  Default is matplotlib's automatic selection.
-| `title:`            | string      | *optional*<br>Figure label, top and centered.  Default is `default title`. 
+| `title:`            | string      | *optional*<br>Figure label, top and centered.  Default is `default title`.
 | `xlabel:`           | string      | *optional*<br>The label for the x-axis.  Default is `default x axis label`.
 | `ylabel:`           | string      | *optional*<br>The label for the left-hand y-axis.  Default is `default y axis label`.
 | `frame:`            | Boolean     | *optional*<br>Visibility of the rectangular frame draw around an axis.<br>`0` The frame is hidden.<br>`1` (default) The frame is shown.

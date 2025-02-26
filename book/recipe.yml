@@ -34,5 +34,5 @@ figure:
   details: false
   display: true
   dpi: 100
-  latex: false 
+  latex: false
   serialize: true

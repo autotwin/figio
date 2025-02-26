@@ -1,7 +1,7 @@
 # Introduction
 
 `figio` is Python application that uses declarative [`yml`](https://yaml.org)
-input file recipes to produce high 
+input file recipes to produce high
 quality [*matplotlib*](https://matplotlib.org)
 and $\LaTeX$ figures.
 

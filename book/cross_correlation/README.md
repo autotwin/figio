@@ -12,7 +12,7 @@ The cross-correlation implements the following conceptual steps:
   * Find the global minimum $T_a = \min(r_a, s_a)$.
   * Find the global maximum $T_b = \max(r_b, s_b)$.
   * Construct a global time interval $[T_a, T_b]$.
-  * Choose a global time step, $\Delta T$, to be the minimum of the reference time step and the subject time step. 
+  * Choose a global time step, $\Delta T$, to be the minimum of the reference time step and the subject time step.
 * Correlation:
   * Keep the reference signal stationary.  Move the subject signal along the $t$ axis until the last data point of the subject signal is multiplied with the first data point of the reference signal.
   * Then, slide the subject signal to the right on the $t$ axis by $\Delta T$, calculating the inner product of the two signals for each $\Delta T$ in $[T_a, T_b]$.
