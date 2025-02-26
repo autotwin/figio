@@ -108,7 +108,7 @@ def new(guid: str, db: dict) -> Histogram:
         print(f"File not found: {e}")
     except ValueError as e:
         print(f"Value error: {e}")
-    except IOError as e:
+    except OSError as e:
         print(f"I/O error: {e}")
     except TypeError as e:
         print(f"Type error: {e}")
