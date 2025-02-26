@@ -5,7 +5,7 @@
 [![DOI](https://img.shields.io/badge/DOI-10.5281/zenodo.14630355-blue)](https://doi.org/10.5281/zenodo.14630355)
 
 `figio` is a Python application that uses declarative [`yml`](https://yaml.org)
-input file recipes to produce high 
+input file recipes to produce high
 quality [*matplotlib*](https://matplotlib.org)
 and $\LaTeX$ figures.
 
