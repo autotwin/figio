@@ -75,3 +75,47 @@ and create a wheel distribution.
 # generates a .whl file in the dist directory
 python -m build --wheel
 ```
+
+### Semantic Version Bump
+
+Create `.github/workflows/bump.yml` as follows:
+
+```yml
+name: Bump
+on:
+  release:
+    types: published
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      - name: bump
+        id: bump
+        run: |
+          # VERSION=$(cargo tree | grep automesh | cut -d " " -f 2 | cut -d "v" -f 2)
+          VERSION=$(grep version pyproject.toml | cut -d '"' -f 2)
+          MAJOR_MINOR=$(echo $VERSION | rev | cut -d "." -f 2- | rev)
+          PATCH=$(echo $VERSION | rev | cut -d "." -f 1)
+          BUMP=$(( $PATCH + 1))
+          BUMPED_VERSION=$(echo $MAJOR_MINOR"."$BUMP)
+          BUMP_BRANCH=$(echo "bump-$VERSION-to-$BUMPED_VERSION")
+          echo "bump_branch=$BUMP_BRANCH" >> $GITHUB_OUTPUT
+          sed -i "s/version = \"$VERSION\"/version = \"$BUMPED_VERSION\"/" pyproject.toml
+          git config --global user.email "bump"
+          git config --global user.name "bump"
+          git add pyproject.toml
+          git commit -m "Bumping version from $VERSION to $BUMPED_VERSION."
+          git branch $BUMP_BRANCH
+          git checkout $BUMP_BRANCH
+          git push --set-upstream origin $BUMP_BRANCH
+      - name: pr
+        uses: rematocorp/open-pull-request-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          from-branch: ${{ steps.bump.outputs.bump_branch }}
+          to-branch: ${{ github.event.repository.default_branch }}
+          repository-owner: autotwin
+          repository: ${{ github.event.repository.name }}
+```
