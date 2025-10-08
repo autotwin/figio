@@ -23,8 +23,9 @@ installation, along with additional packages.  It allows users to create isolate
 environments for different projects. This ensures that dependencies and libraries
 do not interfere with each other.
 
-Create a virtual environment with either `pip` or [`uv`].  `pip` is already included
+Create a virtual environment with either `pip` or `uv`.  `pip` is already included
 with Python.  `uv` must be [installed](https://docs.astral.sh/uv/getting-started/installation/).
+`uv` is 10-100x faster than `pip`.
 
 ```sh
 # pip method 
