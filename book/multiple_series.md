@@ -1,9 +1,9 @@
 # Multiple Series
 
-We show an examples of multiple series using default and non-default values for the line specifications (color, transparency, type).
+We show an example of multiple series using default and non-default values for the line specifications (color, transparency, and type).
 
 The file [data.csv](data.csv)
-contains colums for `time (s),sin(t),cos(2t)`.
+contains columns for `time (s),sin(t),cos(2t)`.
 
 ```sh
 <!-- cmdrun more data.csv -->

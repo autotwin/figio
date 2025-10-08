@@ -32,7 +32,7 @@ figio histogram.yml
 <!-- cmdrun figio histogram.yml -->
 ```
 
-The following figures appears:
+The following figures appear:
 
 ![](hist_sr2sx_aspect.svg)
 ![](hist_sr2sx_msj.svg)

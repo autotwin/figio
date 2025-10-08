@@ -5,7 +5,7 @@ It is sometimes called the *sliding dot product* or *sliding inner product*.
 
 The cross-correlation implements the following conceptual steps:
 
-* Given two signals
+* Given two signals:
   * $r(t)$ is the **reference** signal with bounds $[r_a, r_b]$.
   * $s(t)$ is the **subject** signal with bounds $[s_a, s_b]$.
 * Synchronization:
@@ -14,9 +14,9 @@ The cross-correlation implements the following conceptual steps:
   * Construct a global time interval $[T_a, T_b]$.
   * Choose a global time step, $\Delta T$, to be the minimum of the reference time step and the subject time step.
 * Correlation:
-  * Keep the reference signal stationary.  Move the subject signal along the $t$ axis until the last data point of the subject signal is multiplied with the first data point of the reference signal.
-  * Then, slide the subject signal to the right on the $t$ axis by $\Delta T$, calculating the inner product of the two signals for each $\Delta T$ in $[T_a, T_b]$.
-  * Find the largest value of the foregoing inner products, and then for that $\Delta T$ step, move the subject curve to align with the reference curve.  This will represent the highest correlation between the reference and the signal.
+  * Keep the reference signal stationary.  Move the subject signal along the $t$-axis until the last data point of the subject signal is multiplied by the first data point of the reference signal.
+  * Then, slide the subject signal to the right on the $t$-axis by $\Delta T$, calculating the inner product of the two signals for each $\Delta T$ in $[T_a, T_b]$.
+  * Find the largest value of the foregoing inner products.  Then for that $\Delta T$ step, move the subject curve to align with the reference curve.  This will represent the highest correlation between the reference and the subject signal.
 
 The `figio` implementation is based on the formulations contained in
 Terpsma *et al.*[^Terpsma_2020], Sections E.2 and E.3 (pages 110 to 121).
@@ -50,7 +50,7 @@ which makes use of the two data series [signal_a.csv](signal_a.csv) and [signal_
 Run figio on the input file to produce the figures.
 
 ```sh
-figio anomaly_receipe.yml
+figio anomaly_recipe.yml
 
 <!-- cmdrun figio anomaly_recipe.yml -->
 ```
@@ -67,4 +67,4 @@ Error metrics:
 
 [^Terpsma_2020]: Terpsma RJ, Hovey CB. Blunt impact brain injury using cellular injury criterion. Sandia National Lab. (SNL-NM), Albuquerque, NM (United States); 2020 Oct 1. [link](https://www.osti.gov/servlets/purl/1716577)
 
-[^Anomaly_2016]: Understanding Cross-Correlation, Auto-Correlation, Normalization and Time Shift, March 8, 2016.  Available from: [https://anomaly.io/understand-auto-cross-correlation-normalized-shift/](https://anomaly.io/understand-auto-cross-correlation-normalized-shift/)
+[^Anomaly_2016]: Understanding Cross-Correlation, Auto-Correlation, Normalization and Time Shift, March 8, 2016. Available from: [https://anomaly.io/understand-auto-cross-correlation-normalized-shift/](https://anomaly.io/understand-auto-cross-correlation-normalized-shift/)
