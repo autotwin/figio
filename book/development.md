@@ -8,10 +8,32 @@ pip install figio
 
 ## Developer Configuration
 
-From the `~/autotwin/figio` folder, create the virtual enivronment,
+Since `figio` is a package within the `autotwin` framework, we suggest cloning the
+`figio` repo to the `autotwin` folder:
 
 ```sh
+cd ~/autotwin
+git clone git@github.com:autotwin/figio.git
+cd ~/autotwin/figio
+```
+
+From the `~/autotwin/figio` folder, create the virtual environment.
+A virtual environment is a self-contained directory that contains a specific Python
+installation, along with additional packages.  It allows users to create isolated
+environments for different projects. This ensures that dependencies and libraries
+do not interfere with each other.
+
+Create a virtual environment with either `pip` or [`uv`].  `pip` is already included
+with Python.  `uv` must be [installed](https://docs.astral.sh/uv/getting-started/installation/).
+
+```sh
+# pip method 
 python -m venv .venv
+
+# uv method
+uv venv
+
+# both methods
 source .venv/bin/activate       # bash
 source .venv/bin/activate.fish  # fish shell
 ```
@@ -19,7 +41,11 @@ source .venv/bin/activate.fish  # fish shell
 Install the code in editable form,
 
 ```sh
+# pip method
 pip install -e .[dev]
+
+# uv method
+uv pip install -e .[dev]
 ```
 
 ## Manual Distribution
@@ -32,7 +58,7 @@ twine check dist/*
 
 ## Distribution
 
-The distribution steps will tag the code state as a release version, with a semantic version number, build the code as a wheel file, and publish to the wheel file as a release to GitHub.
+The distribution steps will tag the code state as a release version, with a semantic version number, build the code as a wheel file, and publish the wheel file as a release to GitHub.
 
 ### Tag
 
@@ -51,7 +77,7 @@ message information.  Create an annotated tag:
 git tag -a v1.0.0 -m "Release version 1.0.0"
 ```
 
-Push the tag to repo
+Push the tag to the repo
 
 ```bash
 # example continued
@@ -68,7 +94,7 @@ Ensure that `setuptools` and `build` are installed:
 pip install setuptools build
 ```
 
-Navigate to the project directory, where the `pyproject.toml` file is located
+Navigate to the project directory, where the `pyproject.toml` file is located,
 and create a wheel distribution.
 
 ```bash

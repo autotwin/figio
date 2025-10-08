@@ -1,8 +1,7 @@
 # Introduction
 
-`figio` is Python application that uses declarative [`yml`](https://yaml.org)
-input file recipes to produce high
-quality [*matplotlib*](https://matplotlib.org)
+`figio` is a Python application that uses declarative [YAML](https://yaml.org)
+input file recipes to produce high-quality [*matplotlib*](https://matplotlib.org)
 and $\LaTeX$ figures.
 
 The following figure types are currently supported:
@@ -10,6 +9,13 @@ The following figure types are currently supported:
 * histogram data.
 
 ## Installation
+
+We support two types of installation: client or developer.  The **client installation** is recommended for users who will use the module but are not
+interested in modifying the module's source code.
+
+In contrast, the [**developer installation**](./development.md#developer-configuration) is recommended for users who wish to modify the module's source code.
+
+### Client Installation
 
 Use of a [virtual environment](https://docs.python.org/3/library/venv.html)
 is recommended but not necessary.
@@ -32,9 +38,9 @@ pip install figio
 
 ## Getting Started
 
-Tabular data is used as the data source of `figio` figures.
+Tabular data is used as the data source for `figio` figures.
 Let's get started with a tabular data for the inflation rate,
-measured on the first day or each year.
+measured on the first day of each year.
 The tabular data, [inflation.csv](inflation.csv), comes from the
 [Federal Reserve Bank of St. Louis](https://fred.stlouisfed.org/series/FPCPITOTLZGUSA).
 
@@ -61,4 +67,4 @@ The following figure appears:
 
 ![](inflation.svg)
 
-Congratulations!  You just make your first `figio` figure.
+Congratulations!  You just made your first `figio` figure.
