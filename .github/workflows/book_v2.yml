@@ -1,0 +1,78 @@
+name: Book_v2
+# faster than Book (v1) because it uses pre-built mdbook binaries
+# faster than Book_v3 because it does not use a container
+on:
+  pull_request:
+    branches: main
+  push:
+    branches: main
+env:
+  CARGO_TERM_COLOR: always
+jobs:
+  mdbook:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v4
+      
+    # 1. Install Rust toolchain (required to compile mdbook-cmdrun and mdbook-katex)
+    # Replaces the previous use of actions-rs/mdbook@v1
+      - name: Install Rust toolchain
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          toolchain: stable
+      
+    # 2. Install mdBook (uses the dedicated action for pre-built binaries)
+    # Replaces 'cargo install mdbook'
+      - name: Setup mdBook
+        uses: peaceiris/actions-mdbook@v2
+        with:
+          mdbook-version: latest
+
+    # 3. Install preprocesors (requires Cargo/Rust from Step 1)
+    # Replaces 'cargo install mdbook-cmdrun mdbook-katex'
+      - name: Install mdBook preprocessors
+        run: |
+          cargo install mdbook-cmdrun
+          cargo install mdbook-katex
+
+    # 4. Setup Python environment since the book uses it to build examples
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: 3.12
+
+      - name: Install Python dependencies
+        run: pip install -e .[dev]
+
+    # 5. Build and Artifact Upload
+      - name: build mdBook
+        run: mdbook build
+
+    # Q: Why this step?
+    # A: The 'move' step in the previous version copied the built book to a different
+    #    directory (_site/) which is unnecessary. The 'actions/upload-pages-artifact@v3'
+    #    action can upload the 'book/' directory directly. So we remove the 'move' step.
+    #   - name: move
+    #     run: mkdir -p _site/ && cp -r book/build/* _site/
+
+    # The 'mdbook build' output is in the default 'book/' directory.
+    # The 'actions/upload-pages-artifact@v3' action can upload 'book/' directly.
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: book/
+
+  deploy:
+    if: github.event_name != 'pull_request'
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    needs: mdbook
+    permissions:
+      id-token: write
+      pages: write
+    runs-on: ubuntu-latest
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
