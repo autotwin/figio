@@ -1,4 +1,6 @@
 name: Book_v2
+# faster than Book (v1) because it uses pre-built mdbook binaries
+# faster than Book_v3 because it does not use a container
 on:
   pull_request:
     branches: main

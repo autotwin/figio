@@ -23,11 +23,12 @@ jobs:
     # Setup Python environment since the book uses it to build examples
       - name: Setup Python
         uses: actions/setup-python@v5
+        id: setup-python
         with:
           python-version: 3.12
 
       - name: Install Python dependencies
-        run: pip install -e .[dev]
+        run: ${{ steps.setup-python.outputs.python-path }}/bin/pip install -e .[dev]
 
     # Build and Artifact Upload
       - name: build mdBook
