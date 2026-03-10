@@ -1,9 +1,17 @@
+[build-system]
+requires = ["hatchling", "hatch-vcs"]
+build-backend = "hatchling.build"
+
 [project]
+name = "figio"
+# version = "0.0.8"
+dynamic = ["version"]  # Removed static version, now determined by VCS
+description = "A declarative method for plotting (x, y) and histogram data"
+requires-python = '>=3.9,<=3.13'
+readme = "README.md"
 authors = [
-  {email = 'chovey@sandia.gov'},
-  {name = 'Chad B. Hovey'},
-  {email = 'mrbuche@sandia.gov'},
-  {name = 'Michael R. Buche'},
+  {email = 'chovey@sandia.gov', name = 'Chad B. Hovey'},
+  {email = 'mrbuche@sandia.gov', name = 'Michael R. Buche'},
 ]
 classifiers = [
   'License :: OSI Approved :: GNU General Public License v3 (GPLv3)',
@@ -12,26 +20,20 @@ classifiers = [
   'Topic :: Scientific/Engineering',
   'Programming Language :: Python',
 ]
-description = "figio"
-version = "0.0.8"
-readme = "README.md"
-#long_description = "A declarative method for plotting (x, y) and histogram data"
 dependencies = [
   "matplotlib",
   "numpy",
-  "pyyml",
+  "pyyaml",
   "schema",
   "scipy",
   "tzlocal",
 ]
-name = "figio"
-requires-python = '>=3.9,<=3.13'
 
 [project.optional-dependencies]
 dev = [
   "black",
   "build",
-  "pip",
+  "hatch",
   "pdoc",
   "pre-commit",
   "pycodestyle",
@@ -41,7 +43,6 @@ dev = [
 ]
 
 # Entry Points
-# https://setuptools.pypa.io/en/latest/userguide/entry_point.html
 [project.scripts]
 figio="figio.command_line:main"
 #fingerprint="figio.fingerprint_md5:main"
@@ -51,13 +52,18 @@ Documentation = 'https://figio.readthedocs.io'
 Homepage = 'https://autotwin.github.io/figio'
 Repository = 'https://github.com/autotwin/figio'
 
+[tool.hatch.version]
+source = "vcs"
+
+[tool.hatch.version.raw-options]
+local_scheme = "no-local-version"  # Ensures clean versions like 0.0.9 instead of 0.0.9+g1234567
+
+[tool.hatch.build.targets.wheel]
+packages = ["figio"]
+
 [tool.pytest.ini_options]
-python_files = [
-  "*.py"
-]
-testpaths = [
-  "tests/"
-]
+python_files = ["*.py"]
+testpaths = ["tests/"]
 
 #[build-system]
 #build-backend = 'maturin'
