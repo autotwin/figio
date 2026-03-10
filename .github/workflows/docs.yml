@@ -21,12 +21,12 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Setup mdBook
+      - name: mdBook
         uses: peaceiris/actions-mdbook@v2
         with:
-          mdbook-version: 'latest'
+          mdbook-version: '0.4.52'
 
-      - name: Install mdBook plugins
+      - name: Dependencies
         uses: taiki-e/install-action@v2
         with:
           tool: mdbook-cmdrun,mdbook-katex
