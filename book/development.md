@@ -81,7 +81,7 @@ description = "A declarative method for plotting (x, y) and histogram data"
 source = "vcs"  # Version Control System is the authority
 
 [tool.hatch.build.targets.wheel]
-packages = ["figio"]
+packages = ["src/figio"]
 ```
 
 ### Tagging

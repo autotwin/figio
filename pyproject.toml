@@ -59,11 +59,12 @@ source = "vcs"
 local_scheme = "no-local-version"  # Ensures clean versions like 0.0.9 instead of 0.0.9+g1234567
 
 [tool.hatch.build.targets.wheel]
-packages = ["figio"]
+packages = ["src/figio"]
 
 [tool.pytest.ini_options]
 python_files = ["*.py"]
 testpaths = ["tests/"]
+pythonpath = ["src"]
 
 #[build-system]
 #build-backend = 'maturin'
