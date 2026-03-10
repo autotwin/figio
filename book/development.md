@@ -49,6 +49,51 @@ pip install -e .[dev]
 uv pip install -e .[dev]
 ```
 
+## Continuous Integration
+
+We use GitHub Actions to ensure code quality. On every push and pull request to any branch,
+we run a test matrix across all supported Python versions (3.10 through 3.14).
+
+Create `.github/workflows/test.yml`:
+
+```yml
+name: Test
+
+on:
+  push:
+    branches:
+      - '**'
+  pull_request:
+    branches:
+      - '**'
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12', '3.13', '3.14-dev']
+      fail-fast: false
+
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        allow-prereleases: true
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install .[dev]
+
+    - name: Run tests
+      run: |
+        pytest -v
+```
+
 ## Manual Distribution
 
 Even for manual builds, the version is automatically derived from the Git tags.

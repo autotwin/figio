@@ -7,7 +7,7 @@ name = "figio"
 # version = "0.0.8"
 dynamic = ["version"]  # Removed static version, now determined by VCS
 description = "A declarative method for plotting (x, y) and histogram data"
-requires-python = '>=3.9,<=3.13'
+requires-python = '>=3.10,<=3.14'
 readme = "README.md"
 authors = [
   {email = 'chovey@sandia.gov', name = 'Chad B. Hovey'},
